@@ -13,11 +13,16 @@ include("${CMAKE_CURRENT_LIST_DIR}/max32690/memory_layout.cmake")
 
 if (${USE_VENDOR_TOOLCHAIN})
 
+set(RAW_CMAKE_C_COMPILER "${MAXIM_LIBRARIES}/../Tools/GNUTools/10.3/bin/arm-none-eabi-gcc")
+set(RAW_CMAKE_CXX_COMPILER "${MAXIM_LIBRARIES}/../Tools/GNUTools/10.3/bin/arm-none-eabi-gcc")
+set(RAW_CMAKE_ASM_COMPILER "${MAXIM_LIBRARIES}/../Tools/GNUTools/10.3/bin/arm-none-eabi-gcc")
+set(RAW_CMAKE_LINKER "${MAXIM_LIBRARIES}/../Tools/GNUTools/10.3/bin/arm-none-eabi-gcc")
+
 # Specify the cross compiler
-set(CMAKE_C_COMPILER ${MAXIM_LIBRARIES}/../Tools/GNUTools/10.3/bin/arm-none-eabi-gcc)
-set(CMAKE_CXX_COMPILER ${MAXIM_LIBRARIES}/../Tools/GNUTools/10.3/bin/arm-none-eabi-g++)
-set(CMAKE_ASM_COMPILER ${MAXIM_LIBRARIES}/../Tools/GNUTools/10.3/bin/arm-none-eabi-gcc)
-set(CMAKE_LINKER ${MAXIM_LIBRARIES}/../Tools/GNUTools/10.3/bin/arm-none-eabi-ld)
+cmake_path(NORMAL_PATH CMAKE_C_COMPILER ${RAW_CMAKE_C_COMPILER})
+cmake_path(NORMAL_PATH CMAKE_CXX_COMPILER ${RAW_CMAKE_CXX_COMPILER})
+cmake_path(NORMAL_PATH CMAKE_ASM_COMPILER ${RAW_CMAKE_ASM_COMPILER})
+cmake_path(NORMAL_PATH CMAKE_LINKER ${RAW_CMAKE_LINKER})
 
 else()
 
